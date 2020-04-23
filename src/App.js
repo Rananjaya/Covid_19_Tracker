@@ -6,15 +6,21 @@ import {fatchData} from './api/index';
 
 class App extends React.Component{
 
+     state = {
+        data : {},
+     }
    async componentDidMount(){
-        const data = await fatchData();
+        const fatchedData = await fatchData();
+         
+        this.setState({data: fatchedData}); 
 
-        console.log(data);
+        console.log(this.state.data);
     }
     render(){
+        const { data } = this.state;
         return(
             <div className={Styles.container}>
-               <Cards />
+               <Cards data={data} />
                <ContryPicker />
                <Chart />
             </div>
